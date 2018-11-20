@@ -1,1 +1,45 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+    background-color: #ffffff;    
+    font-family: 'Roboto', sans-serif;
+}
+
+a { outline: none; }
+
+.container-fluid {
+    padding: 0;
+}
+
+.header {
+    height: 280px;
+    padding-top: 5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    background: #123 url('./assets/img/back.jpg');
+    background-size: cover;
+    color: #fff;
+
+    h2 {
+        font-size: 40px;
+        font-family: 'Pacifico', cursive;
+        color: #e91e63;    
+    }
+
+    p {
+        color: #8e8e8e;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 20px;
+    }
+
+    form {
+        input {
+            font-family: 'Montserrat', sans-serif;
+            outline: none;
+            width: 22rem;
+            min-width: 10rem;
+            max-width: 24rem;
+            border: 0;
+            color: #ffffff;
+            background: rgba(0, 0, 0, 0.5);
+        }
+    }
+}

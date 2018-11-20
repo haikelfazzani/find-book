@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+    <div class="col mt-3 mb-3">
+
+      <table class="table table-hover mb-3">
+        <thead>
+          <tr>
+            <th scope="col">Repository</th>
+            <th scope="col">issues</th>
+            <th scope="col">forks</th>
+            <th scope="col">language</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <tr *ngFor="let item of searchResult | paginate: { itemsPerPage: 10, currentPage: p }">
+            <td>
+              <a href="{{item.html_url}}"  target="_blank"class="res-name">
+                <h5><i class="fas fa-laptop-code"></i> {{ item.name }}</h5>
+              </a>
+              <div class="res-description">{{ item.description }}</div>
+              <div class="desc-details">
+                <a href="{{ item.homepage }}" target="_blank"><i class="fas fa-link mr-3"></i> </a>
+                <span><i class="fas fa-star"></i> {{ item.stargazers_count }}</span>                
+                <span *ngIf="!item.archived"><i class="fas fa-circle ml-3"></i></span>
+              </div>
+            </td>
+            <td>{{ item.open_issues }}</td>
+            <td>{{ item.forks }}</td>
+            <td>{{ item .language }}</td>
+          </tr>
+
+        </tbody>
+      </table>
+
+      <div class="res-pagination">
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
+    </div>
+
+  </div>
+</div>
