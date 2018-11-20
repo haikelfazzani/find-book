@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'github-search';
-  name : string = 'anuglar';
+  name : string = 'java';
 }

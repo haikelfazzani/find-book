@@ -5,10 +5,7 @@
       <table class="table table-hover mb-3">
         <thead>
           <tr>
-            <th scope="col">Repository</th>
-            <th scope="col">issues</th>
-            <th scope="col">forks</th>
-            <th scope="col">language</th>
+            <th scope="col">Book</th>
           </tr>
         </thead>
 
@@ -16,27 +13,38 @@
 
           <tr *ngFor="let item of searchResult | paginate: { itemsPerPage: 10, currentPage: numOfPages }">
             <td>
-              <a href="{{item.html_url}}"  target="_blank"class="res-name">
-                <h5><i class="fas fa-laptop-code"></i> {{ item.name }}</h5>
+              <a href="{{item.volumeInfo.previewLink}}" target="_blank" *ngIf="!!item.volumeInfo.imageLinks.smallThumbnail">
+                <img src="{{ item.volumeInfo.imageLinks.smallThumbnail }}" class="mr-3" alt="{{ item.volumeInfo.imageLinks.smallThumbnail }}">
               </a>
-              <div class="res-description">{{ item.description }}</div>
-              <div class="desc-details">
-                <a href="{{ item.homepage }}" target="_blank"><i class="fas fa-link mr-3"></i> </a>
-                <span><i class="fas fa-star"></i> {{ item.stargazers_count }}</span>                
-                <span *ngIf="!item.archived"><i class="fas fa-circle ml-3"></i></span>
+              <a href="{{item.volumeInfo.previewLink}}" target="_blank" class="res-name">
+                <h5><i class="fas fa-book"></i> {{ item.volumeInfo.title }}</h5>
+              </a>
+
+              <div class="res-description" *ngIf="!!item.volumeInfo.description ; else noDesc">
+                {{ item.volumeInfo.description }}
               </div>
+
+              <ng-template #noDesc>no description was found!</ng-template>
+
+              <div class="book-details mt-3">
+                <span class="author" style="float: left"><i class="fas fa-pen"></i> {{ item.volumeInfo.authors }}</span>
+                <span style="float: right" class="ml-3"><i class="fas fa-file-alt"></i> {{ item.volumeInfo.pageCount }}</span>
+                <span style="float: right"><i class="fas fa-star"></i> {{ item.volumeInfo.ratingsCount }}</span>
+                <span style="float: right"><a href="{{ item.volumeInfo.previewLink }}" target="_blank">
+                  <i class="fas fa-link mr-3"></i> </a>
+                </span>                
+              </div>
+              
             </td>
-            <td>{{ item.open_issues }}</td>
-            <td>{{ item.forks }}</td>
-            <td>{{ item .language }}</td>
+
           </tr>
 
         </tbody>
-        
+
       </table>
-      
+
       <div class="res-pagination mt-3">
-          <pagination-controls (pageChange)="numOfPages = $event"></pagination-controls>
+        <pagination-controls (pageChange)="numOfPages = $event"></pagination-controls>
       </div>
 
     </div>

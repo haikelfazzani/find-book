@@ -14,7 +14,7 @@ export class SearchResultComponent implements OnChanges , OnInit {
   searchResult : Array<any> = []; 
   numOfPages : number;
 
-  current : string = 'angular';
+  current : string = 'java';
 
   constructor(public service : GitSearchService) { }
 
@@ -22,7 +22,7 @@ export class SearchResultComponent implements OnChanges , OnInit {
 
     this.current = changes.nameValue.currentValue;   
     if(this.current !== undefined || this.current !== "") {
-      this.service.getRepos(this.current).subscribe((data:any) => {
+      this.service.getBook(this.current).subscribe((data:any) => {
         this.searchResult = data;
       });
     }   

@@ -17,10 +17,19 @@
 
         .fa-star { color: #FFEB3B;        }
         .fa-link { color: #b1b1b1;        }
-        .fa-circle { color: rgb(8, 187, 8); }
 
-        .desc-details {
+        .author {
             font-size: 14px;
+            font-family: 'Montserrat', sans-serif;
+            color: #888888;
+        }
+
+        .book-details {
+            font-size: 14px;
+        }
+
+        img {
+            float: left;
         }
     }
 }
