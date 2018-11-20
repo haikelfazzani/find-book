@@ -13,14 +13,14 @@
 
           <tr *ngFor="let item of searchResult | paginate: { itemsPerPage: 10, currentPage: numOfPages }">
             <td>
-              <a href="{{item.volumeInfo.previewLink}}" target="_blank" *ngIf="!!item.volumeInfo.imageLinks.smallThumbnail">
+              <a href="{{item.volumeInfo.previewLink}}" target="_blank" *ngIf="item.volumeInfo.imageLinks?.smallThumbnail">
                 <img src="{{ item.volumeInfo.imageLinks.smallThumbnail }}" class="mr-3" alt="{{ item.volumeInfo.imageLinks.smallThumbnail }}">
               </a>
               <a href="{{item.volumeInfo.previewLink}}" target="_blank" class="res-name">
                 <h5>{{ item.volumeInfo.title }}</h5>
               </a>
 
-              <div class="res-description" *ngIf="!!item.volumeInfo.description ; else noDesc">
+              <div class="res-description" *ngIf="item.volumeInfo?.description ; else noDesc">
                 {{ item.volumeInfo.description }}
               </div>
 

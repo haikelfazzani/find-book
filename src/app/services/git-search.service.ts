@@ -1,4 +1,4 @@
-import { pluck, delay } from 'rxjs/operators';
+import { pluck } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -7,6 +7,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class GitSearchService {    
 
+  regx = new RegExp('^[a-zA-Z0-9 ]*$')
+
   constructor(private http : HttpClient) { }
 
   getBook(name : string) {
@@ -14,4 +16,9 @@ export class GitSearchService {
     return this.http.get(path).pipe(pluck('items'));
   }
 
+  validateInput(input : string) : boolean {
+    return this.regx.test(input);
+  }
+
 }
+ 

@@ -21,11 +21,15 @@ export class SearchResultComponent implements OnChanges , OnInit {
   ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
 
     this.current = changes.nameValue.currentValue;   
-    if(this.current !== undefined || this.current !== "") {
-      this.service.getBook(this.current).subscribe((data:any) => {
-        this.searchResult = data;
-      });
-    }   
+    if((this.current !== undefined || this.current !== "") && this.service.validateInput(this.current)) {
+      this.service.getBook(this.current.trim()).subscribe((data:any) => {
+        if(data !== undefined && data.length > 0)
+        {        
+          this.searchResult = data;
+        }
+      } , error => console.log('this is error')
+      );
+    }       
   }
 
   ngOnInit() 
