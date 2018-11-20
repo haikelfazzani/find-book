@@ -7,7 +7,8 @@
 
       <form>
         <div class="form-group">
-          <input type="search" class="form-control-lg" placeholder="..." required>
+          <input type="search" class="form-control-lg" placeholder="..." required
+          [(ngModel)]="name" name="name">
         </div>
       </form>
 
@@ -15,4 +16,4 @@
   </div>
 </div>
 
-<app-search-result></app-search-result>
+<app-search-result nameValue="{{name}}"></app-search-result>

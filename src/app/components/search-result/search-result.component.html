@@ -14,7 +14,7 @@
 
         <tbody>
 
-          <tr *ngFor="let item of searchResult | paginate: { itemsPerPage: 10, currentPage: p }">
+          <tr *ngFor="let item of searchResult | paginate: { itemsPerPage: 10, currentPage: numOfPages }">
             <td>
               <a href="{{item.html_url}}"  target="_blank"class="res-name">
                 <h5><i class="fas fa-laptop-code"></i> {{ item.name }}</h5>
@@ -32,11 +32,13 @@
           </tr>
 
         </tbody>
+        
       </table>
-
-      <div class="res-pagination">
-          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      
+      <div class="res-pagination mt-3">
+          <pagination-controls (pageChange)="numOfPages = $event"></pagination-controls>
       </div>
+
     </div>
 
   </div>
