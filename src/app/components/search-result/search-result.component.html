@@ -17,7 +17,7 @@
                 <img src="{{ item.volumeInfo.imageLinks.smallThumbnail }}" class="mr-3" alt="{{ item.volumeInfo.imageLinks.smallThumbnail }}">
               </a>
               <a href="{{item.volumeInfo.previewLink}}" target="_blank" class="res-name">
-                <h5><i class="fas fa-book"></i> {{ item.volumeInfo.title }}</h5>
+                <h5>{{ item.volumeInfo.title }}</h5>
               </a>
 
               <div class="res-description" *ngIf="!!item.volumeInfo.description ; else noDesc">
@@ -27,7 +27,7 @@
               <ng-template #noDesc>no description was found!</ng-template>
 
               <div class="book-details mt-3">
-                <span class="author" style="float: left"><i class="fas fa-pen"></i> {{ item.volumeInfo.authors }}</span>
+                <span class="author" style="float: left"><i class="fas fa-book"></i> {{ item.volumeInfo.authors }}</span>
                 <span style="float: right" class="ml-3"><i class="fas fa-file-alt"></i> {{ item.volumeInfo.pageCount }}</span>
                 <span style="float: right"><i class="fas fa-star"></i> {{ item.volumeInfo.ratingsCount }}</span>
                 <span style="float: right"><a href="{{ item.volumeInfo.previewLink }}" target="_blank">

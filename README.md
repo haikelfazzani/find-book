@@ -1,1 +1,1 @@
-<p>Fast Searching For Repositories</p>
+<p>Find Your Book. Quickly.</p>
