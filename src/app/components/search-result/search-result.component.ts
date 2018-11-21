@@ -1,3 +1,4 @@
+import { distinctUntilChanged } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { BookSearchService } from 'src/app/services/book-search.service';
 
@@ -8,22 +9,33 @@ import { BookSearchService } from 'src/app/services/book-search.service';
 })
 export class SearchResultComponent implements OnInit {
 
-  searchResult : Array<any> = []; 
-  numOfPages : number;
+  searchResult: Array<any> = [];
+  numOfPages: number;
+  userSelect : string = 'google';
 
-  constructor(public service : BookSearchService) { 
-    this.service.bookTitleSource.subscribe(data => {
-      if(data.length > 0) {
-        this.service.getBook(data).subscribe((data:any) => {
-          this.searchResult = data;
-        });
-      }
+  constructor(public service: BookSearchService) {
+    this.service.userSelectSource.pipe(distinctUntilChanged()).subscribe(userSelect => {
+      this.userSelect = userSelect;
+      this.service.bookTitleSource.subscribe(userInput => {
+        if (userInput.length > 0) {
+          if (userSelect === 'google') {
+            this.service.getBook(userInput).subscribe((books: any) => {
+              this.searchResult = books;
+            });
+
+          } else {
+            this.service.getBookFrom(userInput).subscribe((books : any) => {
+              this.searchResult = books;
+            });
+          }
+        }
+      });
     });
+
   }
 
-  ngOnInit() 
-  {
-    
+  ngOnInit() {
+
   }
 
 }

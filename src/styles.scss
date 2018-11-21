@@ -37,11 +37,11 @@ a:hover , button:focus { outline: none; text-decoration: none; }
     }
 
     form {
-        input {
+        margin: 0 auto;
+        select , input {
             color: #ffffff;
             font-family: 'Montserrat', sans-serif;
             outline: none;
-            width: 22rem;
             border: 0;
             background: rgba(0, 0, 0, 0.5);
             transition-duration: 400ms;
@@ -58,7 +58,6 @@ a:hover , button:focus { outline: none; text-decoration: none; }
     font-size: 25px;
     color: #bfbfbf;
     background-color: #ffffff;
-    width: 25%;
     margin: auto;
     display: block;
 }

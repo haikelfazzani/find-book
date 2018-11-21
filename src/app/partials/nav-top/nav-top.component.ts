@@ -10,8 +10,7 @@ export class NavTopComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   hideShow() {
     this.hideHeader = this.hideHeader === true ? false :  true;
