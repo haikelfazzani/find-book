@@ -43,7 +43,7 @@
 
       </table>
 
-      <div class="res-pagination mt-3" *ngIf="searchResult.length > 0">
+      <div class="res-pagination mt-3" *ngIf="searchResult.length > 10">
         <pagination-controls (pageChange)="numOfPages = $event"></pagination-controls>
       </div>
 

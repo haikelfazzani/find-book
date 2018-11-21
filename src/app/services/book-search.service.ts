@@ -9,6 +9,7 @@ export class BookSearchService {
   bookTitleSource = new BehaviorSubject<string>('java');
   bookTitle$ = this.bookTitleSource.asObservable();
   regx = new RegExp('^[a-zA-Z0-9 ]*$');
+  path : string = '';
 
   constructor(private http : HttpClient) { } 
   
@@ -17,8 +18,8 @@ export class BookSearchService {
   }
 
   getBook(bookTitle : string) {
-    let path = `https://www.googleapis.com/books/v1/volumes?q=${bookTitle}`;
-    return this.http.get(path).pipe(distinctUntilChanged() ,pluck('items'));
+    this.path = `https://www.googleapis.com/books/v1/volumes?q=${bookTitle}`;
+    return this.http.get(this.path).pipe(distinctUntilChanged() ,pluck('items'));
   }
 
   validateInput(input : string) : boolean {

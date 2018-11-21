@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-nav-top',
-  templateUrl: './nav-top.component.html',
-  styleUrls: ['./nav-top.component.scss']
+  templateUrl: './nav-top.component.html'
 })
 export class NavTopComponent implements OnInit {
 
@@ -15,8 +14,7 @@ export class NavTopComponent implements OnInit {
   }
 
   hideShow() {
-    if(this.hideHeader) this.hideHeader = false;
-    else this.hideHeader = true;
+    this.hideHeader = this.hideHeader === true ? false :  true;
   }
 
 }

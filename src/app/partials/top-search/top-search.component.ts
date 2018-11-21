@@ -14,15 +14,17 @@ import { BookSearchService } from 'src/app/services/book-search.service';
   styleUrls: ['./top-search.component.scss']
 })
 export class TopSearchComponent implements OnInit {
+
+  userInput : string = '';
   
   constructor(private service : BookSearchService) { }
 
   ngOnInit() {}
 
   getBookTitle(event) {
-    let userInput = event.target.value;
-    if(userInput.length > 0 && this.service.validateInput(userInput)) {
-      this.service.updateBookTitle(userInput);
+    this.userInput = event.target.value;
+    if(this.userInput.length > 0 && this.service.validateInput(this.userInput)) {
+      this.service.updateBookTitle(this.userInput);
     }
   }
 
