@@ -3,7 +3,8 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
-a { outline: none; }
+a , button { border: 0; outline: none; cursor: pointer; }
+a:hover , button:focus { outline: none; text-decoration: none; }
 
 .container-fluid {
     padding: 0;
@@ -12,17 +13,21 @@ a { outline: none; }
 .header {
     height: 280px;
     padding-top: 5rem;
-    margin-bottom: 1rem;
     text-align: center;
     background: #123 url('./assets/img/back.jpg');
     /*background-color: #112233;*/
     background-size: cover;
     color: #fff;
 
-    h2 {
+    h2 a {
         font-size: 40px;
         font-family: 'Pacifico', cursive;
         color: #e91e63;    
+        transition-duration: 400ms;
+        transition-property: color;
+        &:hover {
+            color: #b11248;
+        }
     }
 
     p {
@@ -33,14 +38,27 @@ a { outline: none; }
 
     form {
         input {
+            color: #ffffff;
             font-family: 'Montserrat', sans-serif;
             outline: none;
             width: 22rem;
-            min-width: 10rem;
-            max-width: 24rem;
             border: 0;
-            color: #ffffff;
             background: rgba(0, 0, 0, 0.5);
-        }
+            transition-duration: 400ms;
+            transition-property: background-color;
+            &:focus {
+                color: #000000;
+                background-color: #faffbd;
+            }
+        }        
     }
+}
+
+.min-header {
+    font-size: 25px;
+    color: #bfbfbf;
+    background-color: #ffffff;
+    width: 25%;
+    margin: auto;
+    display: block;
 }

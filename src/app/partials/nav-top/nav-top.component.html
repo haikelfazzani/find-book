@@ -1,0 +1,23 @@
+<div class="container-fluid">
+  <div class="header" *ngIf="!hideHeader">
+    <div class="container">
+
+      <h2><a routerLink="/">FindBook</a></h2>
+      <p>Find Your Book. Quickly.</p>
+
+      <app-top-search></app-top-search>
+
+      <div>
+        <a href=""><i class="fab fa-github-square"></i></a>
+        <a href=""><i class="fab fa-github-square"></i></a>
+        <a href=""><i class="fab fa-github-square"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <button class="min-header" (click)="hideShow()"
+  data-toggle="tooltip" data-placement="bottom" title="Hide Top Header">
+    <i class="fas fa-minus"></i>
+  </button>
+
+</div><!-- End container-fluid -->

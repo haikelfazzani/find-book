@@ -5,7 +5,7 @@
       <table class="table table-hover mb-3">
         <thead>
           <tr>
-            <th scope="col">Book</th>
+            <th scope="col"><i class="fas fa-list"></i> Books</th>
           </tr>
         </thead>
 
@@ -43,7 +43,7 @@
 
       </table>
 
-      <div class="res-pagination mt-3">
+      <div class="res-pagination mt-3" *ngIf="searchResult.length > 0">
         <pagination-controls (pageChange)="numOfPages = $event"></pagination-controls>
       </div>
 

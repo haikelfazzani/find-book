@@ -1,24 +1,3 @@
-<div class="container-fluid">
-  <div class="header">
-    <div class="container">
-      
-      <h2>FindBook</h2>
-      <p>Find Your Book. Quickly.</p>
+<app-nav-top></app-nav-top>
 
-      <form>
-        <div class="form-group">
-          <input type="search" class="form-control-lg" placeholder="..." required
-          [(ngModel)]="name" name="name">
-        </div>
-      </form>
-
-      <div>
-        <a href=""><i class="fab fa-github-square"></i></a>
-        <a href=""><i class="fab fa-github-square"></i></a>
-        <a href=""><i class="fab fa-github-square"></i></a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<app-search-result nameValue="{{name}}"></app-search-result>
+<router-outlet></router-outlet>
