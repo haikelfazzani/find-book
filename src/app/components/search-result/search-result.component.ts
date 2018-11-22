@@ -9,26 +9,30 @@ import { BookSearchService } from 'src/app/services/book-search.service';
 })
 export class SearchResultComponent implements OnInit {
 
-  searchResult: Array<any> = [];
+  searchGoogle: Array<any> = [];
+  searchItBooks: Array<any> = [];
   numOfPages: number;
-  userSelect : string = 'google';
+
+  userInput: string = '';
+  userSelect: string = 'google';
 
   constructor(public service: BookSearchService) {
     this.service.userSelectSource.pipe(distinctUntilChanged()).subscribe(userSelect => {
       this.userSelect = userSelect;
       this.service.bookTitleSource.subscribe(userInput => {
-        if (userInput.length > 0) {
-          if (userSelect === 'google') {
-            this.service.getBook(userInput).subscribe((books: any) => {
-              this.searchResult = books;
-            });
 
-          } else {
-            this.service.postTitle(userInput).subscribe((books:any) => {                              
-                this.searchResult = books.books;              
-            });
-          }
+        this.userInput = userInput;
+        if (userSelect === 'google') {
+          this.service.getBook(userInput).subscribe((books: any) => {
+            this.searchGoogle = books;
+          });
+
+        } else {
+          this.service.postTitle(userInput).subscribe((books: any) => {
+            this.searchItBooks = books.books;
+          });
         }
+
       });
     });
 

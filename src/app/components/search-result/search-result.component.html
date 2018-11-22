@@ -1,22 +1,23 @@
-<div class="container">
-  <div class="row" *ngIf="searchResult.length > 0">
+<div class="container">    
+    
+  <div class="row">
     <div class="col mt-3 mb-5">
 
       <table class="table table-hover mb-3">
         <thead>
-          <tr *ngIf="userSelect === 'google'">
-            <th scope="col"><i class="fas fa-list"></i> Books</th>
+          <tr>
+            <th scope="col"><i class="fas fa-search"></i> Books - {{ userInput }}</th>
           </tr>
         </thead>
 
         <tbody>
-          <ng-container *ngIf="userSelect === 'google' ; else itBooks">
-            <tr *ngFor="let item of searchResult | paginate: { itemsPerPage: 10, currentPage: numOfPages }">
+          <ng-container *ngIf="searchGoogle.length > 0 && userSelect === 'google' ; else itBooks">
+            <tr *ngFor="let item of searchGoogle | paginate: { itemsPerPage: 10, currentPage: numOfPages }">
               <td>
-                <a href="{{item.volumeInfo.previewLink}}" target="_blank" *ngIf="item.volumeInfo.imageLinks?.smallThumbnail">
-                  <img src="{{ item.volumeInfo.imageLinks.smallThumbnail }}" class="mr-3" alt="{{ item.volumeInfo.imageLinks.smallThumbnail }}">
+                <a href="{{item.volumeInfo?.previewLink}}" target="_blank" *ngIf="item.volumeInfo.imageLinks?.smallThumbnail">
+                  <img src="{{ item.volumeInfo.imageLinks?.smallThumbnail }}" class="mr-3" alt="{{ item.volumeInfo.imageLinks?.smallThumbnail }}">
                 </a>
-                <a href="{{item.volumeInfo.previewLink}}" target="_blank" class="res-name">
+                <a href="{{item.volumeInfo?.previewLink}}" target="_blank" class="res-name">
                   <h5>{{ item.volumeInfo.title }}</h5>
                 </a>
 
@@ -27,11 +28,16 @@
                 <ng-template #noDesc>no description was found!</ng-template>
 
                 <div class="book-details mt-3">
-                  <span class="author" style="float: left"><i class="fas fa-book"></i> {{ item.volumeInfo.authors }}</span>
-                  <span style="float: right" class="ml-3"><i class="fas fa-file-alt"></i> {{ item.volumeInfo.pageCount
-                    }}</span>
-                  <span style="float: right"><i class="fas fa-star"></i> {{ item.volumeInfo.ratingsCount }}</span>
-                  <span style="float: right"><a href="{{ item.volumeInfo.previewLink }}" target="_blank">
+                  <span class="author" style="float: left">
+                    <i class="fas fa-book"></i> {{ item.volumeInfo?.authors }}
+                  </span>
+                  <span style="float: right" class="ml-3">
+                    <i class="fas fa-file-alt"></i> {{ item.volumeInfo?.pageCount}}
+                  </span>
+                  <span style="float: right">
+                    <i class="fas fa-star"></i> {{ item.volumeInfo?.ratingsCount }}
+                  </span>
+                  <span style="float: right"><a href="{{ item.volumeInfo?.previewLink }}" target="_blank">
                       <i class="fas fa-link mr-3"></i> </a>
                   </span>
                 </div>
@@ -42,33 +48,38 @@
           </ng-container>
         </tbody>
       </table>
+    </div>
+  </div><!-- End row -->
 
-      <ng-template #itBooks>
+  <ng-template #itBooks>
 
-        <div class="row">
-            <div class="col-sm-3 mb-3" *ngFor="let item of searchResult | paginate: { itemsPerPage: 10, currentPage: numOfPages }">
-                <div class="card h-100">
-                  <a href="{{item.url}}" target="_blank" *ngIf="item?.image">
-                    <img src="{{ item.image }}" class="mr-3" alt="{{ item.image }"
-                    [ngStyle]="{'width': '100%', 'background-color': '#9E9E9E'}">
-                  </a>
-                  <div class="card-body">
-                    <a href="{{item.url}}" target="_blank" class="res-name">
-                      <h5>{{ item.title }}</h5>
-                    </a>
-                    <p class="card-text">{{ item.subtitle }}</p>
-                  </div>
-                </div>
-              </div>
+    <div class="row" *ngIf="searchItBooks.length > 0 ; else booksNotFound">
+      <div class="col-sm-3 mb-3" *ngFor="let item of searchItBooks | paginate: { itemsPerPage: 10, currentPage: numOfPages }">
+        <div class="card h-100">
+          <a href="{{item.url}}" target="_blank" *ngIf="item?.image">
+            <img src="{{ item.image }}" class="mr-3" alt="{{ item.image }"
+                        [ngStyle]="{'width': '100%', 'background-color': '#9E9E9E'}">
+          </a>
+          <div class="card-body">
+            <a href="{{item.url}}" target="_blank" class="res-name">
+              <h5>{{ item.title }}</h5>
+            </a>
+            <p class="card-text">{{ item.subtitle }}</p>
+          </div>
         </div>
-
-      </ng-template>
-
-      <div class="res-pagination mt-3" *ngIf="searchResult.length > 10">
-        <pagination-controls (pageChange)="numOfPages = $event"></pagination-controls>
       </div>
-
     </div>
 
-  </div>
+    
+    <ng-template #booksNotFound>
+      <app-loader></app-loader>  
+    </ng-template>
+
+</ng-template>
+
+<div class="res-pagination mt-3" *ngIf="numOfPages > 10">
+  <pagination-controls (pageChange)="numOfPages = $event"></pagination-controls>
 </div>
+
+
+</div><!-- End container -->

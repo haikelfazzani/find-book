@@ -1,9 +1,9 @@
 <div class="container-fluid">
-  <div class="header" *ngIf="!hideHeader">
+  <div id="header" *ngIf="!hideHeader">
     <div class="container">
 
-      <h2><a routerLink="/">FindBook</a></h2>
-      <p>Find books with just one search</p>
+      <h2 class="animated rubberBand"><a routerLink="/">FindBook<i class="fas fa-search"></i></a></h2>
+      <p class="animated fadeInUp delay-1s">Find books with just one search</p>
 
       <app-top-search></app-top-search>      
       

@@ -12,7 +12,7 @@ export class BookSearchService {
   userSelectSource = new BehaviorSubject<string>('google');
   userSelect$ = this.userSelectSource.asObservable();
 
-  regx = new RegExp('^[a-zA-Z0-9 ]*$');
+  regx = new RegExp('^[a-zA-Z0-9-.+# ]*$');
   path : string = '';
 
   constructor(private http : HttpClient) { } 
@@ -35,11 +35,6 @@ export class BookSearchService {
   postTitle(book) {
     return this.http.post('https://books-server-10.herokuapp.com/itbooks' , {book : book})
     .pipe(distinctUntilChanged() , retry(5));
-  }
-
-  getBookFrom(bookTitle : string) {
-    this.path = `http://localhost:3000/itbooks`;
-    return this.http.get(this.path);
   }
 
   validateInput(input : string) : boolean {
