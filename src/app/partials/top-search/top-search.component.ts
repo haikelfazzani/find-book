@@ -11,10 +11,10 @@ import { BookSearchService } from 'src/app/services/book-search.service';
       (keyup)="getBookTitle($event)">
     </div>
 
-    <div class="col-sm-2" style="margin:0 auto;">
+    <div class="col-sm-2" style="margin:5px auto 0;">
       <select class="custom-select my-1 mr-sm-2" (change)="onChange($event)">
         <option value="google">Google</option>
-        <option value="itbook">itbook</option>
+        <option value="itbook">itbook.store</option>
       </select>
     </div>
 

@@ -24,8 +24,8 @@ export class SearchResultComponent implements OnInit {
             });
 
           } else {
-            this.service.getBookFrom(userInput).subscribe((books : any) => {
-              this.searchResult = books;
+            this.service.postTitle(userInput).subscribe((books:any) => {                              
+                this.searchResult = books.books;              
             });
           }
         }

@@ -1,10 +1,10 @@
 <div class="container">
-  <div class="row">
+  <div class="row" *ngIf="searchResult.length > 0">
     <div class="col mt-3 mb-5">
 
       <table class="table table-hover mb-3">
         <thead>
-          <tr>
+          <tr *ngIf="userSelect === 'google'">
             <th scope="col"><i class="fas fa-list"></i> Books</th>
           </tr>
         </thead>
@@ -40,36 +40,29 @@
 
             </tr>
           </ng-container>
-
-          <ng-template #itBooks>
-            <tr *ngFor="let item of searchResult | paginate: { itemsPerPage: 10, currentPage: numOfPages }">
-              <td>
-                <a href="{{item.url}}" target="_blank" *ngIf="item?.image">
-                  <img src="{{ item.image }}" class="mr-3" alt="{{ item.image }}">
-                </a>
-                <a href="{{item.url}}" target="_blank" class="res-name">
-                  <h5>{{ item.title }}</h5>
-                </a>
-
-                <div class="res-description" *ngIf="item.subtitle ; else noDesc">
-                  {{ item.subtitle }}
-                </div>
-
-                <ng-template #noDesc>no description was found!</ng-template>
-
-                <div class="book-details mt-3">
-                  <span style="float: right"><a href="{{ item.url }}" target="_blank">
-                      <i class="fas fa-link mr-3"></i> </a>
-                  </span>
-                </div>
-
-              </td>
-
-            </tr>
-          </ng-template>
         </tbody>
-
       </table>
+
+      <ng-template #itBooks>
+
+        <div class="row">
+            <div class="col-sm-3 mb-3" *ngFor="let item of searchResult | paginate: { itemsPerPage: 10, currentPage: numOfPages }">
+                <div class="card h-100">
+                  <a href="{{item.url}}" target="_blank" *ngIf="item?.image">
+                    <img src="{{ item.image }}" class="mr-3" alt="{{ item.image }"
+                    [ngStyle]="{'width': '100%', 'background-color': '#9E9E9E'}">
+                  </a>
+                  <div class="card-body">
+                    <a href="{{item.url}}" target="_blank" class="res-name">
+                      <h5>{{ item.title }}</h5>
+                    </a>
+                    <p class="card-text">{{ item.subtitle }}</p>
+                  </div>
+                </div>
+              </div>
+        </div>
+
+      </ng-template>
 
       <div class="res-pagination mt-3" *ngIf="searchResult.length > 10">
         <pagination-controls (pageChange)="numOfPages = $event"></pagination-controls>

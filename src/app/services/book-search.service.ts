@@ -1,4 +1,4 @@
-import { pluck, distinctUntilChanged } from 'rxjs/operators';
+import { pluck, distinctUntilChanged, retry } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
@@ -29,12 +29,17 @@ export class BookSearchService {
 
   getBook(bookTitle : string) {
     this.path = `https://www.googleapis.com/books/v1/volumes?q=${bookTitle}`;
-    return this.http.get(this.path).pipe(distinctUntilChanged() ,pluck('items'));
+    return this.http.get(this.path).pipe(distinctUntilChanged() ,pluck('items') , retry(2));
+  }
+
+  postTitle(book) {
+    return this.http.post('https://books-server-10.herokuapp.com/itbooks' , {book : book})
+    .pipe(distinctUntilChanged() , retry(5));
   }
 
   getBookFrom(bookTitle : string) {
-    this.path = `https://api.itbook.store/1.0/search/${bookTitle}`;
-    return this.http.get(this.path).pipe(pluck('books'));
+    this.path = `http://localhost:3000/itbooks`;
+    return this.http.get(this.path);
   }
 
   validateInput(input : string) : boolean {
