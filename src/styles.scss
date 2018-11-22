@@ -1,5 +1,5 @@
 body {
-    background-color: #ffffff;    
+    background-color: #f1f1f1;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -10,28 +10,30 @@ a:hover , button:focus { outline: none; text-decoration: none; }
 
 #header {
     height: 280px;
-    padding-top: 5rem;
+    padding-top: 45px;
     text-align: center;
-    background: #123 url('./assets/img/back.jpg');
-    /*background-color: #112233;*/    
+    background: #112233 url('./assets/img/back.jpg');   
     background-size: cover;
     color: #fff;
 
-    h2 a {
-        font-size: 40px;
+    h2 {
         font-family: 'Pacifico', cursive;
-        color: #e91e63;    
-        transition-duration: 400ms;
-        transition-property: color;
-        &:hover {
-            color: #b11248;
+        font-size: 50px;        
+        a {                        
+            color: #e91e63;    
+            transition-duration: 400ms;
+            transition-property: color;
+            &:hover {
+                color: #b11248;
+            }
         }
-    }
+    }    
 
     p {
         color: #8e8e8e;
         font-family: 'Montserrat', sans-serif;
         font-size: 20px;
+        text-shadow: -2px 0px 0px #00000021, 0px 2px #000000fc;
     }
 
     form {
@@ -55,7 +57,7 @@ a:hover , button:focus { outline: none; text-decoration: none; }
 .min-header {
     font-size: 25px;
     color: #bfbfbf;
-    background-color: #ffffff;
+    background-color:#f1f1f1; 
     margin: auto;
     display: block;
 }
