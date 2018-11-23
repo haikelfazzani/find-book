@@ -1,6 +1,6 @@
-import { distinctUntilChanged } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { BookSearchService } from 'src/app/services/book-search.service';
+import { combineLatest } from 'rxjs';
 
 @Component({
   selector: 'app-search-result',
@@ -19,24 +19,25 @@ export class SearchResultComponent implements OnInit {
   constructor(public service: BookSearchService) { }
 
   ngOnInit() {
-    this.service.userSelect$.pipe(distinctUntilChanged()).subscribe(userSelect => {
-      this.userSelect = userSelect;
-      this.service.bookTitle$.subscribe(userInput => {
+    combineLatest(this.service.bookTitle$ ,this.service.userSelect$)
+    .subscribe(data => {
+        
+        this.userSelect = data[1];
+        this.userInput = data[0];
 
-        this.userInput = userInput;
-        if (userSelect === 'google') {
-          this.service.getBook(userInput).subscribe((books: any) => {
+        if (this.userSelect === 'google') {
+          this.service.getBook(this.userInput).subscribe((books: any) => {
             this.searchGoogle = books;
           });
 
         } else {
-          this.service.postTitle(userInput).subscribe((books: any) => {
+          this.service.postTitle(this.userInput).subscribe((books: any) => {
             this.searchItBooks = books.books;
           });
         }
 
       });
-    });
+
   }
 
 }
