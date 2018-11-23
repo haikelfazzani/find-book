@@ -6,7 +6,7 @@
       <table class="table table-hover mb-3">
         <thead>
           <tr>
-            <th scope="col"><i class="fas fa-search"></i> "{{ userInput }}" search results</th>
+            <th scope="col"><i class="fas fa-search"></i> Search results - "{{ userInput }}"</th>
             <th></th>
           </tr>
         </thead>
@@ -54,7 +54,7 @@
 
   <ng-template #itBooks>
 
-    <div class="row" *ngIf="searchItBooks?.length > 0 ; else booksNotFound">
+    <div class="row">
       <div class="col-sm-3 mb-3" 
       *ngFor="let item of searchItBooks | paginate: { itemsPerPage: 10, currentPage: numOfPages }">
         <div class="card h-100">
@@ -70,11 +70,6 @@
         </div>
       </div>
     </div>
-
-    
-    <ng-template #booksNotFound>
-      <app-loader></app-loader>  
-    </ng-template>
 
 </ng-template>
 

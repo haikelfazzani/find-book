@@ -31,9 +31,11 @@ export class SearchResultComponent implements OnInit {
           });
 
         } else {
-          this.service.postTitle(this.userInput).subscribe((books: any) => {
-            this.searchItBooks = books.books;
-          });
+          this.service.postTitle(this.userInput).subscribe(
+            (books: any) => {
+              this.searchItBooks = books.books;
+            } , error => console.log('server down.. ')
+          );
         }
 
       });
