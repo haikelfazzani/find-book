@@ -40,8 +40,9 @@ export class TopSearchComponent implements OnInit {
 
   onChange(event) {
     this.userSelect = event.target.value;
-    if(this.userSelect.length > 0 && this.service.validateInput(this.userSelect))
-    this.service.updateUserSelect(this.userSelect);
+    if(this.userSelect.length > 0 && this.service.validateInput(this.userSelect)) {
+      this.service.updateUserSelect(this.userSelect);
+    }
   }
 
 }

@@ -9,14 +9,16 @@ import { BookSearchService } from 'src/app/services/book-search.service';
 })
 export class SearchResultComponent implements OnInit {
 
-  searchGoogle    : Array<any> = [];
-  searchItBooks   : Array<any> = [];
-  numOfPages      : number;
+  searchGoogle: Array<any> = [];
+  searchItBooks: Array<any> = [];
+  numOfPages: number;
 
-  userInput       : string = '';
-  userSelect      : string = 'google';
+  userInput: string = '';
+  userSelect: string = 'google';
 
-  constructor(public service: BookSearchService) {
+  constructor(public service: BookSearchService) { }
+
+  ngOnInit() {
     this.service.userSelect$.pipe(distinctUntilChanged()).subscribe(userSelect => {
       this.userSelect = userSelect;
       this.service.bookTitle$.subscribe(userInput => {
@@ -35,11 +37,6 @@ export class SearchResultComponent implements OnInit {
 
       });
     });
-
-  }
-
-  ngOnInit() {
-
   }
 
 }

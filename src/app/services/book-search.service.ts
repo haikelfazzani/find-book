@@ -33,13 +33,12 @@ export class BookSearchService {
   }
 
   postTitle(book) {
-    return this.http.post('https://books-server-10.herokuapp.com/itbooks' , {book : book})
-    .pipe(distinctUntilChanged() , retry(5));
+    return this.http.post('https://books-server-10.herokuapp.com/itbooks' , {book})
+    .pipe(retry(5));
   }
 
   validateInput(input : string) : boolean {
-    if(input.length < 0) return false;
-    return this.regx.test(input);
+    return input.length < 0 ? false : this.regx.test(input);
   }
 
 }
