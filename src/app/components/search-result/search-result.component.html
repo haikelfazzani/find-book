@@ -6,7 +6,7 @@
       <table class="table table-hover mb-3">
         <thead>
           <tr>
-            <th scope="col"><i class="fas fa-search"></i> Books - {{ userInput }}</th>
+            <th scope="col"><i class="fas fa-search"></i> "{{ userInput }}" search results</th>
             <th></th>
           </tr>
         </thead>
@@ -30,7 +30,7 @@
 
                 <div class="book-details mt-3">
                   <span class="author" style="float: left">
-                    <i class="fas fa-book"></i> {{ item.volumeInfo?.authors }}
+                    <i class="fas fa-book"></i> by {{ item.volumeInfo?.authors }}
                   </span>
                   <span style="float: right" class="ml-3">
                     <i class="fas fa-file-alt"></i> {{ item.volumeInfo?.pageCount}}
@@ -54,7 +54,7 @@
 
   <ng-template #itBooks>
 
-    <div class="row" *ngIf="searchItBooks.length > 0 ; else booksNotFound">
+    <div class="row" *ngIf="searchItBooks?.length > 0 ; else booksNotFound">
       <div class="col-sm-3 mb-3" 
       *ngFor="let item of searchItBooks | paginate: { itemsPerPage: 10, currentPage: numOfPages }">
         <div class="card h-100">

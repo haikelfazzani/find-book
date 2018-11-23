@@ -12,6 +12,7 @@ import { AboutComponent } from './components/about/about.component';
 import { NavTopComponent } from './partials/nav-top/nav-top.component';
 import { TopSearchComponent } from './partials/top-search/top-search.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { FooterComponent } from './partials/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { LoaderComponent } from './components/loader/loader.component';
     AboutComponent,
     NavTopComponent,
     TopSearchComponent,
-    LoaderComponent
+    LoaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule , FormsModule, 

@@ -1,13 +1,14 @@
 .table {
     th {
         font-family: 'Montserrat', sans-serif;
-        color: #9e9e9e;
+        color: #8795a1;
         font-weight: 100;
         border: 0;        
     }
 
     td {        
         background-color: #ffffff;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,.12), 0 2px 4px 0 rgba(0,0,0,.08);
         .res-name {
             text-decoration: none;
         }
@@ -17,11 +18,11 @@
         }
 
         .fa-star { color: #FFEB3B;        }
-        .fa-link { color: #b1b1b1;        }
+        .fa-link { color: #8795a1;        }
 
         .author {
             font-size: 14px;
-            color: #888888;
+            color: #8795a1;
         }
 
         .book-details {
@@ -34,6 +35,7 @@
     }
 }
 
+.card { box-shadow: 0 4px 8px 0 rgba(0,0,0,.12), 0 2px 4px 0 rgba(0,0,0,.08); }
 .card img { width: 100%; object-fit: none; }
 
 .res-pagination {
