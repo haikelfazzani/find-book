@@ -1,4 +1,4 @@
-<div class="container">    
+<div class="container mx-auto">    
     
   <div class="row">
     <div class="col mt-3 mb-5">
@@ -55,7 +55,8 @@
   <ng-template #itBooks>
 
     <div class="row" *ngIf="searchItBooks.length > 0 ; else booksNotFound">
-      <div class="col-sm-3 mb-3" *ngFor="let item of searchItBooks | paginate: { itemsPerPage: 10, currentPage: numOfPages }">
+      <div class="col-sm-3 mb-3" 
+      *ngFor="let item of searchItBooks | paginate: { itemsPerPage: 10, currentPage: numOfPages }">
         <div class="card h-100">
           <a href="{{item.url}}" target="_blank" *ngIf="item?.image">
             <img src="{{ item.image }}" alt="{{ item.image }">
